@@ -1,27 +1,28 @@
 const router = require('express').Router()
 const ProdutosModel = require('./model')
-const validator = require('../validator')
+const Validator = require('../validator')
 
 const requiredFields = {
     nome: {
         required: true,
         customValidate: {
             isValid: (nome) => {
-                return nome.length <= 5
+                return nome.length <= 100
             },
-            msg: 'O campo nome tem um limite de 5'
+            msg: 'O campo nome tem um limite de 100'
         }
     }
 }
 
-router.post('/', validator(requiredFields), async (req, res) => {
+const produtoValidator = new Validator(requiredFields)
+router.post('/', produtoValidator.getValidator(), async (req, res) => {
     let { body } = req
     await ProdutosModel.create(body)
     res.status(201).send()
 })
 
 router.get('/', async (req, res) => {
-    let produtos = await ProdutosModel.findAll()
+    let produtos = await ProdutosModel.findAll({ include: 'usuarios'})
     res.status(200).json(produtos)
 })
 

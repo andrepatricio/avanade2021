@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const UsersModel = require('./model')
-const validator = require('../validator')
+const Validator = require('../validator')
+const ProdutosModel = require('../produtos/model')
 let requiredFields = {
     nome: {
         required: true
@@ -12,13 +13,13 @@ let requiredFields = {
         required: true
     }
 }
-
+const usuarioValidator = new Validator(requiredFields)
 router.get('/', async (req, res) => {
-    const usuarios = await UsersModel.findAll()
+    const usuarios = await UsersModel.findAll({ include : ProdutosModel})
     res.status(200).json(usuarios)
 })
 
-router.post('/', validator(requiredFields), async (req, res) => {
+router.post('/', usuarioValidator.getValidator(), async (req, res) => {
     await UsersModel.create(req.body)
     res.status(201).send()
 })

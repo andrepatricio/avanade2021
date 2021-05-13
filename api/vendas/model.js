@@ -2,7 +2,6 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const UsuarioSchema = require('../usuarios/model')
 const ProdutoSchema = require('../produtos/model')
-const UserModel = require('../usuarios/model')
 
 const VendasSchema = db.define('vendas', {
     id: {

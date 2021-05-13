@@ -14,13 +14,14 @@ class Produto implements Models<string> {
     id: string
 }
 
-class Pessoa implements Models<number>{
-    id: number
+class Pessoa<T> implements Models<T>{
+    id: T
     nome: string;
     idade: number;
     cidade: Cidade;
 
-    constructor(nome: string, idade: number, cidade?: Cidade) {
+    constructor(id: T, nome: string, idade: number, cidade?: Cidade) {
+        this.id = id
         this.nome = nome
         this.idade = idade
         this.cidade = cidade

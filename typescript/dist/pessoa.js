@@ -15,7 +15,8 @@ var Produto = /** @class */ (function () {
     return Produto;
 }());
 var Pessoa = /** @class */ (function () {
-    function Pessoa(nome, idade, cidade) {
+    function Pessoa(id, nome, idade, cidade) {
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.cidade = cidade;

@@ -1,7 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
-var pessoa_1 = require("./pessoa");
-var ivo = new pessoa_1.Pessoa(2, 'Ivo', 18, pessoa_1.Cidade.GRU);
-var andre = new pessoa_1.Pessoa('hy18h2323h1', 'Andre', 30, pessoa_1.Cidade.FLN);
-console.log(ivo);
-console.log(andre);
+var express_1 = __importDefault(require("express"));
+var user_routes_1 = __importDefault(require("./routes/user.routes"));
+var app = express_1["default"]();
+app.use(express_1["default"].json());
+app.use('/', user_routes_1["default"]);
+app.listen(3000, function () { return console.log('Rodando na porta 3000'); });

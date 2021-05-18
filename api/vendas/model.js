@@ -1,31 +1,31 @@
-const Sequelize = require('sequelize')
+const { DataTypes } = require('sequelize')
 const db = require('../db')
 const UsuarioSchema = require('../usuarios/model')
 const ProdutoSchema = require('../produtos/model')
 
 const VendasSchema = db.define('vendas', {
     id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
     usuarioId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
             model: UsuarioSchema,
             key: 'id'
         }
     },
     produtoId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
             model: ProdutoSchema,
             key: 'id'        
         }
     },
     quantidade: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         defaultValue: 1
     }
 })

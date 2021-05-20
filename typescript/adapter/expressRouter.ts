@@ -4,7 +4,6 @@ import { HTTPRequest } from '../interfaces/http'
 
 export const adapt = (controller: Controller) => {
     return (req: Request, res: Response) => {
-        console.log(req)
         const request: HTTPRequest = {}
         request.body = req.body
         request.params = req.params
